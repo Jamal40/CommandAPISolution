@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CommandAPI.Data
 {
-    public class SqlCommandAPIRepo : ICommandAPIRepo<Command>
+    public class SqlCommandAPIRepo : IAPIRepo<Command>
     {
         private readonly CommandContext _context;
 

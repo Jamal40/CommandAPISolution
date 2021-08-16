@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CommandAPI.Data
 {
-    public interface ICommandAPIRepo <T> where T : class
+    public interface IAPIRepo <T> where T : class
     {
         bool SaveChanges();
         IEnumerable<T> GetAllCommands();

@@ -18,14 +18,14 @@ namespace CommandAPI.Tests
 {
     public class CommandsControllerTests : IDisposable
     {
-        Mock<ICommandAPIRepo> mockRepo;
+        Mock<IAPIRepo<Command>> mockRepo;
         CommandsProfiles realProfiles;
         MapperConfiguration configs;
         IMapper mapper;
 
         public CommandsControllerTests()
         {
-            mockRepo = new Mock<ICommandAPIRepo>();
+            mockRepo = new Mock<IAPIRepo<Command>>();
             realProfiles = new CommandsProfiles();
             realProfiles = new CommandsProfiles();
             configs = new MapperConfiguration(cfg => cfg.AddProfile(realProfiles));

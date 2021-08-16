@@ -12,6 +12,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Newtonsoft.Json.Serialization;
+using CommandAPI.Models;
+
 namespace CommandAPI
 {
     public class Startup
@@ -46,7 +48,7 @@ namespace CommandAPI
                 CamelCasePropertyNamesContractResolver();
             });
             //services.AddScoped<ICommandAPIRepo, MockCommandAPIRepo>();
-            services.AddScoped<ICommandAPIRepo, SqlCommandAPIRepo>();
+            services.AddScoped<IAPIRepo<Command>, SqlGenericRepo<Command>>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
         }

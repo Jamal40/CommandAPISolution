@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CommandAPI.Data
 {
-    public class MockCommandAPIRepo : ICommandAPIRepo<Command>
+    public class MockCommandAPIRepo : IAPIRepo<Command>
     {
         public void CreateCommand(Command cmd)
         {

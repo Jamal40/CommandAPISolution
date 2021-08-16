@@ -15,10 +15,10 @@ namespace CommandAPI.Controllers
     [ApiController]
     public class CommandsController : Controller
     {
-        private readonly ICommandAPIRepo _repository;
+        private readonly IAPIRepo<Command> _repository;
         private readonly IMapper _mapper;
 
-        public CommandsController(ICommandAPIRepo repository, IMapper mapper)
+        public CommandsController(IAPIRepo<Command> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -27,6 +27,9 @@ namespace CommandAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<CommandReadDTO>> GetAllCommands()
         {
+            //Testing the loading spinner
+            System.Threading.Thread.Sleep(3000);
+
             var commandItems = _repository.GetAllCommands();
             return Ok(_mapper.Map<IEnumerable<CommandReadDTO>>(commandItems));
         }
@@ -34,6 +37,7 @@ namespace CommandAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<CommandReadDTO> GetCommandById(int id)
         {
+            System.Threading.Thread.Sleep(3000);
             var commandItem = _repository.GetCommandById(id);
             if (commandItem == null)
             {
