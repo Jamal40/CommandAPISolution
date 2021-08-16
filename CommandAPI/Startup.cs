@@ -16,6 +16,7 @@ namespace CommandAPI
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
         {
@@ -25,9 +26,20 @@ namespace CommandAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.AllowAnyOrigin();
+                                      builder.AllowAnyMethod();
+                                      builder.AllowAnyHeader();
+                                  });
+            });
+
             services.AddDbContext<CommandContext>(options =>
-                                                  options
-                                                  .UseSqlServer(Configuration.GetConnectionString("CommandConnectionString")));
+                                              options
+                                              .UseSqlServer(Configuration.GetConnectionString("CommandConnectionString")));
             services.AddControllers().AddNewtonsoftJson(s =>
             {
                 s.SerializerSettings.ContractResolver = new
@@ -49,6 +61,7 @@ namespace CommandAPI
 
             app.UseRouting();
 
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseEndpoints(endpoints =>
             {
