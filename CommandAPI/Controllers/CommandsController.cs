@@ -74,6 +74,7 @@ namespace CommandAPI.Controllers
 
             return NoContent();
         }
+
         [HttpPatch("{id}")]
         public ActionResult PartialUpdateCommand(int id, JsonPatchDocument<CommandUpdateDTO> patchDoc)
         {
@@ -96,6 +97,7 @@ namespace CommandAPI.Controllers
 
             return NoContent();
         }
+
         [HttpDelete("{id}")]
         public ActionResult DeleteCommand(int id)
         {
@@ -109,6 +111,7 @@ namespace CommandAPI.Controllers
 
             return NoContent();
         }
+
         //[HttpGet]
         //public ActionResult<IEnumerable<string>> Get()
         //{
